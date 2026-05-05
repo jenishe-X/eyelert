@@ -1,0 +1,8 @@
+{
+  "name": "eyelert-monorepo",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix mobile-app run build",
+    "start:mobile": "npm --prefix mobile-app run start"
+  }
+}

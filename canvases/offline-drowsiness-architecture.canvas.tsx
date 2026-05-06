@@ -122,7 +122,7 @@ export default function OfflineDrowsinessArchitectureCanvas() {
             </Row>
             <Row gap={8}>
               <Pill tone="warning">AI Processing Layer (Mobile)</Pill>
-              <Text>Face detection -> landmarks -> EAR/MAR/PERCLOS extraction</Text>
+              <Text>Face detection → landmarks → EAR/MAR/PERCLOS extraction</Text>
             </Row>
             <Row gap={8}>
               <Pill tone="warning">Decision Layer (Mobile)</Pill>
@@ -163,8 +163,8 @@ export default function OfflineDrowsinessArchitectureCanvas() {
 
       <H3>Primary Control Loop</H3>
       <Text>
-        Capture -> AI Metrics -> Decision -> Alert Prompt -> Voice Command -> Route (optional) -> Arrival ->
-        Rest Timer -> Resume Monitoring.
+        Capture → AI Metrics → Decision → Alert Prompt → Voice Command → Route (optional) → Arrival → Rest
+        Timer → Resume Monitoring.
       </Text>
 
       <Divider />

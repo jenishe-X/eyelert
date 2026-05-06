@@ -2,7 +2,11 @@
   "name": "eyelert-monorepo",
   "private": true,
   "scripts": {
-    "build": "npm --prefix mobile-app run build",
+    "build": "npm --prefix mobile-app run build:core",
+    "start": "npm run start:mobile",
     "start:mobile": "npm --prefix mobile-app run start"
+  },
+  "dependencies": {
+    "ws": "^8.20.0"
   }
 }

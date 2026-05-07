@@ -23,6 +23,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { IntroVideo } from "./src/components/IntroVideo";
+import { OnboardingFlow } from "./src/screens/onboarding/OnboardingFlow";
 
 void SplashScreen.preventAutoHideAsync().catch(() => {
   // Keep startup resilient if splash control is unavailable.
@@ -105,6 +106,7 @@ export default function App() {
   const insets = useSafeAreaInsets();
   const { colorScheme, setColorScheme } = useColorScheme();
   const [showIntro, setShowIntro] = useState(true);
+  const [showOnboarding, setShowOnboarding] = useState(true);
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_600SemiBold,
@@ -137,6 +139,10 @@ export default function App() {
         <StatusBar barStyle={statusBarStyle} />
       </View>
     );
+  }
+
+  if (showOnboarding) {
+    return <OnboardingFlow onComplete={() => setShowOnboarding(false)} />;
   }
 
   return (

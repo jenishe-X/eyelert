@@ -3,5 +3,11 @@
   "compilerOptions": {
     "strict": true
   },
-  "include": ["App.tsx", "index.js", "src/**/*", "../shared/protocol.ts"]
+  "include": [
+    "App.tsx",
+    "index.js",
+    "nativewind-env.d.ts",
+    "src/**/*",
+    "../shared/protocol.ts"
+  ]
 }

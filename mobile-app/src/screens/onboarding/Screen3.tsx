@@ -83,6 +83,19 @@ export function Screen3({ onNext }: Screen3Props) {
             {"Stay alert on the road \nwith smart fatigue detection."}
           </Text>
 
+          <Text
+            className="font-sans text-center text-[#9C2230]"
+            style={{
+              fontSize: 13,
+              lineHeight: 18,
+              letterSpacing: 1.2,
+              marginTop: 8,
+              marginBottom: 30,
+            }}
+          >
+            DRIVE SMARTER . RESPOND FASTER
+          </Text>
+
           <View
             style={{
               width: "100%",
@@ -92,7 +105,7 @@ export function Screen3({ onNext }: Screen3Props) {
               shadowOpacity: 0.28,
               shadowRadius: 16,
               elevation: 8,
-              marginTop: 30,
+              marginTop: 0,
             }}
           >
             <Pressable

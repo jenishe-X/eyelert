@@ -5,6 +5,9 @@ type ChevronButtonProps = {
   onPress: () => void;
   accessibilityLabel?: string;
   size?: number;
+  textColor?: string;
+  backgroundColor?: string;
+  circular?: boolean;
 };
 
 /**
@@ -16,7 +19,12 @@ export function ChevronButton({
   onPress,
   accessibilityLabel = "Continue",
   size = 56,
+  textColor = "#FFFFFF",
+  backgroundColor = "transparent",
+  circular = false,
 }: ChevronButtonProps) {
+  const diameter = size;
+
   return (
     <Pressable
       onPress={onPress}
@@ -24,17 +32,23 @@ export function ChevronButton({
       accessibilityLabel={accessibilityLabel}
       hitSlop={16}
       style={({ pressed }) => ({
-        paddingHorizontal: 8,
-        paddingVertical: 4,
+        width: circular ? diameter : undefined,
+        height: circular ? diameter : undefined,
+        alignItems: "center",
+        justifyContent: "center",
+        paddingHorizontal: circular ? 0 : 8,
+        paddingVertical: circular ? 0 : 4,
+        borderRadius: circular ? diameter / 2 : 0,
+        backgroundColor,
         opacity: pressed ? 0.6 : 1,
       })}
     >
       <Text
         allowFontScaling={false}
         style={{
-          color: "#FFFFFF",
-          fontSize: size,
-          lineHeight: size,
+          color: textColor,
+          fontSize: circular ? size * 0.62 : size,
+          lineHeight: circular ? size * 0.62 : size,
           fontWeight: "900",
           includeFontPadding: false,
         }}

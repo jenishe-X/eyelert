@@ -32,10 +32,10 @@ export function WelcomeScreen({ onNext }: WelcomeScreenProps) {
               fontSize: 44,
               lineHeight: 50,
               letterSpacing: -0.5,
-              marginBottom: 10,
+              marginBottom: 20,
             }}
           >
-            {"Your\nsafety\nmatters."}
+            {"Your safety\nmatters."}
           </Text>
 
           <View style={{ marginLeft: 40 }}>

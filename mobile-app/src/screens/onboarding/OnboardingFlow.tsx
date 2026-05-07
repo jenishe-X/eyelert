@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { Screen2 } from "./Screen2";
 import { WelcomeScreen } from "./WelcomeScreen";
 
 type OnboardingFlowProps = {
@@ -11,7 +12,7 @@ type OnboardingFlowProps = {
  */
 export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
   const [step, setStep] = useState(0);
-  const totalSteps = 1;
+  const totalSteps = 2;
 
   const goNext = useCallback(() => {
     setStep((prev) => {
@@ -26,7 +27,10 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
 
   switch (step) {
     case 0:
-    default:
       return <WelcomeScreen onNext={goNext} />;
+    case 1:
+      return <Screen2 onNext={goNext} />;
+    default:
+      return <Screen2 onNext={goNext} />;
   }
 }

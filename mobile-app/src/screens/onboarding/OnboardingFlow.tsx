@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
+import { Animated, Easing } from "react-native";
 import { Screen2 } from "./Screen2";
 import { Screen3 } from "./Screen3";
 import { WelcomeScreen } from "./WelcomeScreen";
@@ -13,27 +14,89 @@ type OnboardingFlowProps = {
  */
 export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
   const [step, setStep] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const totalSteps = 3;
+  const transitionOpacity = useRef(new Animated.Value(1)).current;
+  const transitionTranslateX = useRef(new Animated.Value(0)).current;
 
   const goNext = useCallback(() => {
-    setStep((prev) => {
-      const next = prev + 1;
-      if (next >= totalSteps) {
-        onComplete();
-        return prev;
-      }
-      return next;
-    });
-  }, [onComplete]);
+    if (isTransitioning) return;
 
+    const next = step + 1;
+    if (next >= totalSteps) {
+      onComplete();
+      return;
+    }
+
+    setIsTransitioning(true);
+    Animated.parallel([
+      Animated.timing(transitionOpacity, {
+        toValue: 0,
+        duration: 160,
+        easing: Easing.out(Easing.quad),
+        useNativeDriver: true,
+      }),
+      Animated.timing(transitionTranslateX, {
+        toValue: -18,
+        duration: 160,
+        easing: Easing.out(Easing.quad),
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      setStep(next);
+      transitionTranslateX.setValue(18);
+      transitionOpacity.setValue(0);
+
+      Animated.parallel([
+        Animated.timing(transitionOpacity, {
+          toValue: 1,
+          duration: 240,
+          easing: Easing.out(Easing.cubic),
+          useNativeDriver: true,
+        }),
+        Animated.timing(transitionTranslateX, {
+          toValue: 0,
+          duration: 240,
+          easing: Easing.out(Easing.cubic),
+          useNativeDriver: true,
+        }),
+      ]).start(() => {
+        setIsTransitioning(false);
+      });
+    });
+  }, [
+    isTransitioning,
+    onComplete,
+    transitionOpacity,
+    transitionTranslateX,
+    totalSteps,
+  ]);
+
+  let content: React.ReactNode;
   switch (step) {
     case 0:
-      return <WelcomeScreen onNext={goNext} />;
+      content = <WelcomeScreen onNext={goNext} />;
+      break;
     case 1:
-      return <Screen2 onNext={goNext} />;
+      content = <Screen2 onNext={goNext} />;
+      break;
     case 2:
-      return <Screen3 onNext={goNext} />;
+      content = <Screen3 onNext={goNext} />;
+      break;
     default:
-      return <Screen3 onNext={goNext} />;
+      content = <Screen3 onNext={goNext} />;
+      break;
   }
+
+  return (
+    <Animated.View
+      style={{
+        flex: 1,
+        opacity: transitionOpacity,
+        transform: [{ translateX: transitionTranslateX }],
+      }}
+    >
+      {content}
+    </Animated.View>
+  );
 }

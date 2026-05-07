@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
+  Animated,
+  Easing,
   ImageBackground,
   Pressable,
   StatusBar,
@@ -15,6 +17,35 @@ type Screen3Props = {
 
 export function Screen3({ onNext }: Screen3Props) {
   const insets = useSafeAreaInsets();
+  const slideAnim = useRef(new Animated.Value(96)).current;
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(0.97)).current;
+
+  useEffect(() => {
+    Animated.sequence([
+      Animated.delay(80),
+      Animated.parallel([
+        Animated.timing(slideAnim, {
+          toValue: 0,
+          duration: 760,
+          easing: Easing.bezier(0.22, 1, 0.36, 1),
+          useNativeDriver: true,
+        }),
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 520,
+          easing: Easing.out(Easing.cubic),
+          useNativeDriver: true,
+        }),
+        Animated.timing(scaleAnim, {
+          toValue: 1,
+          duration: 760,
+          easing: Easing.bezier(0.22, 1, 0.36, 1),
+          useNativeDriver: true,
+        }),
+      ]),
+    ]).start();
+  }, [fadeAnim, scaleAnim, slideAnim]);
 
   return (
     <View className="flex-1 bg-black">
@@ -44,7 +75,7 @@ export function Screen3({ onNext }: Screen3Props) {
         >
         </View>
 
-        <View
+        <Animated.View
           style={{
             backgroundColor: "#F1F1F3",
             borderTopLeftRadius: 44,
@@ -56,6 +87,8 @@ export function Screen3({ onNext }: Screen3Props) {
             alignItems: "center",
             borderTopWidth: 1,
             borderColor: "rgba(255, 255, 255, 0.65)",
+            transform: [{ translateY: slideAnim }, { scale: scaleAnim }],
+            opacity: fadeAnim,
           }}
         >
           <Text
@@ -129,7 +162,7 @@ export function Screen3({ onNext }: Screen3Props) {
               </Text>
             </Pressable>
           </View>
-        </View>
+        </Animated.View>
       </ImageBackground>
     </View>
   );

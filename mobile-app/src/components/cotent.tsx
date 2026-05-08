@@ -89,11 +89,14 @@ export function Cotent({ statusBarStyle }: { statusBarStyle: "light-content" | "
         className="flex-row items-center justify-between px-4 pb-4"
         style={{ paddingTop: Math.max(insets.top, Platform.OS === "ios" ? 8 : 12) }}
       >
-        <Image
-          source={require("../../assets/logo.png")}
-          resizeMode="cover"
-          style={{ width: 32, height: 32, borderRadius: 10, marginTop: 10 }}
-        />
+        <View className="mt-2 flex-row items-center">
+          <Image
+            source={require("../../assets/logo.png")}
+            resizeMode="cover"
+            style={{ width: 32, height: 32, borderRadius: 10 }}
+          />
+          <Text className="ml-2 font-display text-xl text-ink dark:text-night-heading">EYELERT</Text>
+        </View>
         <TouchableOpacity
           activeOpacity={0.8}
           accessibilityRole="button"

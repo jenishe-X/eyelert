@@ -86,34 +86,36 @@ export function Cotent({ statusBarStyle }: { statusBarStyle: "light-content" | "
   return (
     <View className="flex-1 bg-canvas dark:bg-night-bg">
       <View
-        className="flex-row items-center justify-between px-4 pb-4"
+        className="px-4 pb-4"
         style={{ paddingTop: Math.max(insets.top, Platform.OS === "ios" ? 8 : 12) }}
       >
-        <View className="mt-2 flex-row items-center">
-          <Image
-            source={require("../../assets/logo.png")}
-            resizeMode="cover"
-            style={{ width: 32, height: 32, borderRadius: 10 }}
-          />
-          <Text className="ml-2 font-display text-xl text-ink dark:text-night-heading">EYELERT</Text>
+        <View className="flex-row items-center justify-between">
+          <View className="mt-2 flex-row items-center">
+            <Image
+              source={require("../../assets/logo.png")}
+              resizeMode="cover"
+              style={{ width: 32, height: 32, borderRadius: 10 }}
+            />
+            <Text className="ml-2 font-display text-xl text-ink dark:text-night-heading">EYELERT</Text>
+          </View>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            accessibilityRole="button"
+            accessibilityLabel="Open menu"
+            className="mt-2 h-10 w-10 items-center justify-center rounded-lg border border-divider bg-surface dark:border-night-border dark:bg-night-surface"
+          >
+            <View className="mb-1 h-0.5 w-5 rounded-full bg-ink dark:bg-night-heading" />
+            <View className="mb-1 h-0.5 w-5 rounded-full bg-ink dark:bg-night-heading" />
+            <View className="h-0.5 w-5 rounded-full bg-ink dark:bg-night-heading" />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          activeOpacity={0.8}
-          accessibilityRole="button"
-          accessibilityLabel="Open menu"
-          className="mt-2 h-10 w-10 items-center justify-center rounded-lg border border-divider bg-surface dark:border-night-border dark:bg-night-surface"
-        >
-          <View className="mb-1 h-0.5 w-5 rounded-full bg-ink dark:bg-night-heading" />
-          <View className="mb-1 h-0.5 w-5 rounded-full bg-ink dark:bg-night-heading" />
-          <View className="h-0.5 w-5 rounded-full bg-ink dark:bg-night-heading" />
-        </TouchableOpacity>
       </View>
       <View className="px-4 pt-4 pb-1"
-       style={{ marginTop: 10, }}
+       style={{ marginTop: 10, marginBottom: 10 }}
       >
         <Text
-          className="font-sans-semibold text-ink dark:text-night-heading"
-          style={{ fontSize: 44, lineHeight: 48, letterSpacing: -0.8 }}
+          className="font-sans-semibold"
+          style={{ fontSize: 44, lineHeight: 48, letterSpacing: -0.8, color: "#5E0006" }}
         >
           Hello, name!
         </Text>

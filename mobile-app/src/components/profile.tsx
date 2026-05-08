@@ -1,14 +1,76 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const DRIVER_PROFILE_STORAGE_KEY = "driver-profile";
 
 export function Profile() {
   const [driverName, setDriverName] = useState("Juan Dela Cruz");
-  const [driverNickname, setDriverNickname] = useState("JD");
+  const [driverNickname, setDriverNickname] = useState("Driver");
   const [emergencyContactName, setEmergencyContactName] =
     useState("Maria Dela Cruz");
   const [emergencyContactNumber, setEmergencyContactNumber] =
     useState("+63 912 345 6789");
+  const [isProfileLoaded, setIsProfileLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        const savedProfile = await AsyncStorage.getItem(DRIVER_PROFILE_STORAGE_KEY);
+        if (!savedProfile) {
+          setIsProfileLoaded(true);
+          return;
+        }
+
+        const parsedProfile: {
+          driverName?: string;
+          driverNickname?: string;
+          emergencyContactName?: string;
+          emergencyContactNumber?: string;
+        } = JSON.parse(savedProfile);
+
+        setDriverName(parsedProfile.driverName ?? "Juan Dela Cruz");
+        setDriverNickname(parsedProfile.driverNickname ?? "JD");
+        setEmergencyContactName(parsedProfile.emergencyContactName ?? "Maria Dela Cruz");
+        setEmergencyContactNumber(parsedProfile.emergencyContactNumber ?? "+63 912 345 6789");
+      } catch (error) {
+        console.warn("Failed to load driver profile from local storage.", error);
+      } finally {
+        setIsProfileLoaded(true);
+      }
+    };
+
+    loadProfile();
+  }, []);
+
+  useEffect(() => {
+    if (!isProfileLoaded) return;
+
+    const saveProfile = async () => {
+      try {
+        await AsyncStorage.setItem(
+          DRIVER_PROFILE_STORAGE_KEY,
+          JSON.stringify({
+            driverName,
+            driverNickname,
+            emergencyContactName,
+            emergencyContactNumber,
+          })
+        );
+      } catch (error) {
+        console.warn("Failed to save driver profile to local storage.", error);
+      }
+    };
+
+    saveProfile();
+  }, [
+    driverName,
+    driverNickname,
+    emergencyContactName,
+    emergencyContactNumber,
+    isProfileLoaded,
+  ]);
 
   return (
     <View className="flex-1 bg-background px-6 py-8 dark:bg-night-background"

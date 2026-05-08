@@ -110,34 +110,35 @@ export function Cotent({ statusBarStyle }: { statusBarStyle: "light-content" | "
           </TouchableOpacity>
         </View>
       </View>
-      <View className="px-4 pt-4 pb-1"
-       style={{ marginTop: 10, marginBottom: 10 }}
-      >
-        <Text
-          className="font-sans-semibold"
-          style={{ fontSize: 44, lineHeight: 48, letterSpacing: -0.8, color: "#5E0006" }}
-        >
-          Hello, name!
-        </Text>
-        <Text
-          className="font-sans text-body dark:text-night-body"
-          style={{ fontSize: 44, lineHeight: 48, letterSpacing: -0.8 }}
-        >
-          Ready for a safe drive today?
-        </Text>
-      </View>
-
       <ScrollView
         className="flex-1"
-        contentContainerClassName="gap-3.5 px-4 pt-3.5"
+        contentContainerClassName="gap-3.5 px-4 pt-4"
         contentContainerStyle={{ paddingBottom: 28 + insets.bottom }}
       >
-        <View className="flex-row items-center justify-between rounded-[14px] border border-divider bg-surface px-3.5 py-3.5 dark:border-night-border dark:bg-night-surface">
-          <Text className="font-sans-semibold text-sm text-ink dark:text-night-heading">
+        <View className="pb-1" style={{ marginTop: 10, marginBottom: 10 }}>
+          <Text
+            className="font-sans-semibold"
+            style={{ fontSize: 44, lineHeight: 48, letterSpacing: -0.8, color: "#5E0006" }}
+          >
+            Hello, name!
+          </Text>
+          <Text
+            className="font-sans text-body dark:text-night-body"
+            style={{ fontSize: 44, lineHeight: 48, letterSpacing: -0.8 }}
+          >
+            Ready for a safe drive today?
+          </Text>
+        </View>
+
+        <View
+          className="flex-row items-center justify-between rounded-[14px] border border-divider px-3.5 py-3.5 dark:border-night-border"
+          style={{ backgroundColor: "#5E0006" }}
+        >
+          <Text className="font-sans-semibold text-sm text-white">
             Driver State
           </Text>
-          <View className="rounded-full bg-safety/12 px-3 py-1.5 dark:bg-safety/20">
-            <Text className="font-sans-bold text-xs text-safety" style={{ letterSpacing: 0.3 }}>
+          <View className="rounded-full bg-white/20 px-3 py-1.5">
+            <Text className="font-sans-bold text-xs text-white" style={{ letterSpacing: 0.3 }}>
               ALERT
             </Text>
           </View>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useColorScheme } from "nativewind";
-import { Platform, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image, Platform, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 function MetricCard({
@@ -86,11 +86,39 @@ export function Cotent({ statusBarStyle }: { statusBarStyle: "light-content" | "
   return (
     <View className="flex-1 bg-canvas dark:bg-night-bg">
       <View
-        className="bg-royal px-4 pb-4"
+        className="flex-row items-center justify-between px-4 pb-4"
         style={{ paddingTop: Math.max(insets.top, Platform.OS === "ios" ? 8 : 12) }}
       >
-        <Text className="font-display text-[30px] text-white" style={{ letterSpacing: 0.4, marginTop: 10 }}>
-          EYELERT
+        <Image
+          source={require("../../assets/logo.png")}
+          resizeMode="cover"
+          style={{ width: 32, height: 32, borderRadius: 10, marginTop: 10 }}
+        />
+        <TouchableOpacity
+          activeOpacity={0.8}
+          accessibilityRole="button"
+          accessibilityLabel="Open menu"
+          className="mt-2 h-10 w-10 items-center justify-center rounded-lg border border-divider bg-surface dark:border-night-border dark:bg-night-surface"
+        >
+          <View className="mb-1 h-0.5 w-5 rounded-full bg-ink dark:bg-night-heading" />
+          <View className="mb-1 h-0.5 w-5 rounded-full bg-ink dark:bg-night-heading" />
+          <View className="h-0.5 w-5 rounded-full bg-ink dark:bg-night-heading" />
+        </TouchableOpacity>
+      </View>
+      <View className="px-4 pt-4 pb-1"
+       style={{ marginTop: 10, }}
+      >
+        <Text
+          className="font-sans-semibold text-ink dark:text-night-heading"
+          style={{ fontSize: 44, lineHeight: 48, letterSpacing: -0.8 }}
+        >
+          Hello, name!
+        </Text>
+        <Text
+          className="font-sans text-body dark:text-night-body"
+          style={{ fontSize: 44, lineHeight: 48, letterSpacing: -0.8 }}
+        >
+          Ready for a safe drive today?
         </Text>
       </View>
 

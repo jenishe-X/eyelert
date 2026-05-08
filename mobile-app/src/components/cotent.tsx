@@ -79,7 +79,13 @@ function ThemeSegment({
   );
 }
 
-export function Cotent({ statusBarStyle }: { statusBarStyle: "light-content" | "dark-content" }) {
+export function Cotent({
+  statusBarStyle,
+  driverNickname,
+}: {
+  statusBarStyle: "light-content" | "dark-content";
+  driverNickname: string;
+}) {
   const insets = useSafeAreaInsets();
   const { colorScheme, setColorScheme } = useColorScheme();
 
@@ -120,13 +126,19 @@ export function Cotent({ statusBarStyle }: { statusBarStyle: "light-content" | "
             className="font-sans-semibold"
             style={{ fontSize: 44, lineHeight: 48, letterSpacing: -0.8, color: "#5E0006" }}
           >
-            Hello, name!
+            Hello, {driverNickname || "Driver"}!
           </Text>
           <Text
             className="font-sans text-body dark:text-night-body"
-            style={{ fontSize: 44, lineHeight: 48, letterSpacing: -0.8 }}
+            style={{ fontSize: 28, lineHeight: 48, letterSpacing: -0.8 }}
           >
-            Ready for a safe drive today?
+            Ready for a safe
+          </Text>
+          <Text
+            className="font-sans text-body dark:text-night-body"
+            style={{ fontSize: 28, lineHeight: 30, letterSpacing: -0.8 }}
+          >
+            drive today?
           </Text>
         </View>
 

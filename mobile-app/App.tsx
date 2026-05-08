@@ -29,6 +29,7 @@ export default function App() {
   const [showIntro, setShowIntro] = useState(true);
   const [showOnboarding, setShowOnboarding] = useState(true);
   const [activeTab, setActiveTab] = useState("dashboard");
+  const [driverNickname, setDriverNickname] = useState("Driver");
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_600SemiBold,
@@ -72,8 +73,10 @@ export default function App() {
       <StatusBar barStyle={statusBarStyle} />
       {activeTab === "start-alert" && <Simulate />}
       {activeTab === "trips" && <Trips />}
-      {activeTab === "profile" && <Profile />}
-      {activeTab === "dashboard" && <Cotent statusBarStyle={statusBarStyle} />}
+      {activeTab === "profile" && <Profile onNicknameChange={setDriverNickname} />}
+      {activeTab === "dashboard" && (
+        <Cotent statusBarStyle={statusBarStyle} driverNickname={driverNickname} />
+      )}
       <Footer onItemPress={setActiveTab} />
     </View>
   );

@@ -192,27 +192,6 @@ export function Profile({ onNicknameChange, onOpenFaceEnrollment }: ProfileProps
         </View>
       </View>
 
-      <TouchableOpacity
-        activeOpacity={0.8}
-        onPress={onOpenFaceEnrollment}
-        className="mt-5 flex-row items-center justify-between rounded-2xl border border-divider bg-surface px-5 py-4 dark:border-night-border dark:bg-night-surface"
-      >
-        <View className="flex-row items-center">
-          <View className="mr-3 rounded-lg bg-[#F6EDEE] p-2">
-            <MaterialIcons name="face-retouching-natural" size={22} color="#5E0006" />
-          </View>
-          <View>
-            <Text className="font-sans-semibold text-base text-body dark:text-night-body">
-              Face Enrollment
-            </Text>
-            <Text className="font-sans text-xs text-muted dark:text-night-muted">
-              Set up your face profile
-            </Text>
-          </View>
-        </View>
-        <MaterialIcons name="chevron-right" size={24} color="#5E0006" />
-      </TouchableOpacity>
-
       <View className="mt-5 rounded-2xl border border-divider bg-surface p-5 dark:border-night-border dark:bg-night-surface">
         <Text className="font-sans-semibold text-sm uppercase tracking-wide text-muted dark:text-night-muted">
           Emergency Contact

@@ -30,7 +30,13 @@ export default function App() {
   const [showIntro, setShowIntro] = useState(true);
   const [showOnboarding, setShowOnboarding] = useState(true);
   const [activeTab, setActiveTab] = useState("dashboard");
+  const [faceEnrollmentReturnTab, setFaceEnrollmentReturnTab] = useState("profile");
   const [driverNickname, setDriverNickname] = useState("Driver");
+
+  const openFaceEnrollmentFrom = (returnTab: string) => {
+    setFaceEnrollmentReturnTab(returnTab);
+    setActiveTab("face-enrollment");
+  };
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_600SemiBold,
@@ -72,15 +78,19 @@ export default function App() {
   return (
     <View className="flex-1 bg-canvas dark:bg-night-bg">
       <StatusBar barStyle={statusBarStyle} />
-      {activeTab === "start-alert" && <Simulate />}
+      {activeTab === "start-alert" && (
+        <Simulate onOpenFaceEnrollment={() => openFaceEnrollmentFrom("start-alert")} />
+      )}
       {activeTab === "trips" && <Trips />}
       {activeTab === "profile" && (
         <Profile
           onNicknameChange={setDriverNickname}
-          onOpenFaceEnrollment={() => setActiveTab("face-enrollment")}
+          onOpenFaceEnrollment={() => openFaceEnrollmentFrom("profile")}
         />
       )}
-      {activeTab === "face-enrollment" && <FaceEnrollment onBack={() => setActiveTab("profile")} />}
+      {activeTab === "face-enrollment" && (
+        <FaceEnrollment onBack={() => setActiveTab(faceEnrollmentReturnTab)} />
+      )}
       {activeTab === "dashboard" && (
         <Cotent statusBarStyle={statusBarStyle} driverNickname={driverNickname} />
       )}

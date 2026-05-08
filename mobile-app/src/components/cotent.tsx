@@ -164,29 +164,6 @@ export function Cotent({
 
         <View className="mt-1">
           <Text className="mb-2 font-sans-bold text-base text-ink dark:text-night-heading">
-            Device Connection
-          </Text>
-          <View className="gap-2 rounded-[14px] border border-divider bg-surface px-3 py-2.5 dark:border-night-border dark:bg-night-surface">
-            <Text className="font-sans text-[13px] text-body dark:text-night-body">
-              ESP32-S3: Connected
-            </Text>
-            <View className="h-px bg-divider dark:bg-night-border" />
-            <Text className="font-sans text-[13px] text-body dark:text-night-body">
-              Camera Stream: 15 fps
-            </Text>
-            <View className="h-px bg-divider dark:bg-night-border" />
-            <Text className="font-sans text-[13px] text-body dark:text-night-body">
-              Mic Keyword Spotter: Ready
-            </Text>
-            <View className="h-px bg-divider dark:bg-night-border" />
-            <Text className="font-sans text-[13px] text-body dark:text-night-body">
-              Speaker + Buzzer: Armed
-            </Text>
-          </View>
-        </View>
-
-        <View className="mt-1">
-          <Text className="mb-2 font-sans-bold text-base text-ink dark:text-night-heading">
             Navigation Preview
           </Text>
           <View className="gap-2 rounded-[14px] border border-divider bg-surface px-3 py-2.5 dark:border-night-border dark:bg-night-surface">

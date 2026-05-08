@@ -49,7 +49,12 @@ function getProfileErrors(params: {
   };
 }
 
-export function Profile({ onNicknameChange }: { onNicknameChange: (nickname: string) => void }) {
+type ProfileProps = {
+  onNicknameChange: (nickname: string) => void;
+  onOpenFaceEnrollment: () => void;
+};
+
+export function Profile({ onNicknameChange, onOpenFaceEnrollment }: ProfileProps) {
   const [driverName, setDriverName] = useState("Juan Dela Cruz");
   const [driverNickname, setDriverNickname] = useState("Driver");
   const [emergencyContactName, setEmergencyContactName] =
@@ -189,6 +194,7 @@ export function Profile({ onNicknameChange }: { onNicknameChange: (nickname: str
 
       <TouchableOpacity
         activeOpacity={0.8}
+        onPress={onOpenFaceEnrollment}
         className="mt-5 flex-row items-center justify-between rounded-2xl border border-divider bg-surface px-5 py-4 dark:border-night-border dark:bg-night-surface"
       >
         <View className="flex-row items-center">

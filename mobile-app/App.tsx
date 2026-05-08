@@ -15,6 +15,7 @@ import React, { useEffect, useState } from "react";
 import { StatusBar, View } from "react-native";
 import { IntroVideo } from "./src/components/IntroVideo";
 import { Cotent } from "./src/components/cotent";
+import { FaceEnrollment } from "./src/components/faceEnrollment";
 import { Footer } from "./src/components/footer";
 import { Profile } from "./src/components/profile";
 import { Simulate } from "./src/components/simulate";
@@ -73,7 +74,13 @@ export default function App() {
       <StatusBar barStyle={statusBarStyle} />
       {activeTab === "start-alert" && <Simulate />}
       {activeTab === "trips" && <Trips />}
-      {activeTab === "profile" && <Profile onNicknameChange={setDriverNickname} />}
+      {activeTab === "profile" && (
+        <Profile
+          onNicknameChange={setDriverNickname}
+          onOpenFaceEnrollment={() => setActiveTab("face-enrollment")}
+        />
+      )}
+      {activeTab === "face-enrollment" && <FaceEnrollment onBack={() => setActiveTab("profile")} />}
       {activeTab === "dashboard" && (
         <Cotent statusBarStyle={statusBarStyle} driverNickname={driverNickname} />
       )}

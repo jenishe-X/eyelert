@@ -15,7 +15,11 @@ const FOOTER_ITEMS: FooterItem[] = [
   { key: "profile", icon: "person", label: "Profile" },
 ];
 
-export function Footer() {
+type FooterProps = {
+  onItemPress?: (key: string) => void;
+};
+
+export function Footer({ onItemPress }: FooterProps) {
   return (
     <View className="border-t border-divider bg-surface px-4 py-3 dark:border-night-border dark:bg-night-surface">
       <View className="flex-row items-center justify-between">
@@ -24,6 +28,7 @@ export function Footer() {
             key={item.key}
             activeOpacity={0.8}
             className="min-w-[72px] items-center justify-center py-1"
+            onPress={() => onItemPress?.(item.key)}
           >
             <MaterialIcons name={item.icon} size={24} color="#5E0006" />
             <Text className="mt-1 text-center font-sans-semibold text-[11px] text-body dark:text-night-body">

@@ -16,6 +16,9 @@ import { StatusBar, View } from "react-native";
 import { IntroVideo } from "./src/components/IntroVideo";
 import { Cotent } from "./src/components/cotent";
 import { Footer } from "./src/components/footer";
+import { Profile } from "./src/components/profile";
+import { Simulate } from "./src/components/simulate";
+import { Trips } from "./src/components/trips";
 import { OnboardingFlow } from "./src/screens/onboarding/OnboardingFlow";
 
 void SplashScreen.preventAutoHideAsync().catch(() => {
@@ -25,6 +28,7 @@ void SplashScreen.preventAutoHideAsync().catch(() => {
 export default function App() {
   const [showIntro, setShowIntro] = useState(true);
   const [showOnboarding, setShowOnboarding] = useState(true);
+  const [activeTab, setActiveTab] = useState("dashboard");
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_600SemiBold,
@@ -66,8 +70,11 @@ export default function App() {
   return (
     <View className="flex-1 bg-canvas dark:bg-night-bg">
       <StatusBar barStyle={statusBarStyle} />
-      <Cotent statusBarStyle={statusBarStyle} />
-      <Footer />
+      {activeTab === "start-alert" && <Simulate />}
+      {activeTab === "trips" && <Trips />}
+      {activeTab === "profile" && <Profile />}
+      {activeTab === "dashboard" && <Cotent statusBarStyle={statusBarStyle} />}
+      <Footer onItemPress={setActiveTab} />
     </View>
   );
 }

@@ -24,7 +24,13 @@
     },
     "scheme": "eyelert",
     "plugins": [
-      "expo-font"
-    ]
+      "expo-font",
+      "expo-dev-client"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "b700ff69-e692-4843-869f-19dab1999b81"
+      }
+    }
   }
 }
